@@ -9,26 +9,25 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=shairport-sync
-PKG_VERSION:=2.1.12
+PKG_VERSION:=HEAD
 PKG_RELEASE:=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git://github.com/mikebrady/shairport-sync.git
+PKG_SOURCE_URL:=git://github.com/MohammadAG/shairport-sync.git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
 PKG_BUILD_PARALLEL:=1
 
-PKG_BUILD_DEPENDS:= +libpthread +libopenssl +libavahi-client +alsa-lib +libdaemon +libsoxr
+PKG_BUILD_DEPENDS:= +libpthread +libpolarssl +libavahi-client +alsa-lib +libdaemon
 
 include $(INCLUDE_DIR)/package.mk
 
 CONFIGURE_ARGS+= \
 	--with-alsa \
 	--with-avahi \
-	--with-soxr \
-	--with-ssl=openssl
+	--with-ssl=polarssl
 
 define Build/Configure
 	(cd $(PKG_BUILD_DIR); autoreconf -i -f)
@@ -44,7 +43,7 @@ endef
 
 define Package/shairport-sync
   $(Package/shairport-sync/Default)
-   DEPENDS:= +libpthread +libopenssl +libavahi-client +alsa-lib +libdaemon +libsoxr +libpopt
+   DEPENDS:= +libpthread +libpolarssl +libavahi-client +alsa-lib +libdaemon +libpopt
 endef
 
 define Package/shairport-sync/description
