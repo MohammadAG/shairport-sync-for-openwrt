@@ -64,9 +64,9 @@ handle_shairport_sync() {
         #echo "Arguments: arglist: \"$arglist\", belist: \"$belist\""                                                            
                                                                                                                                  
         if [ "x$name" = "x" ] ; then                                                                                             
-                shairport-sync -d $arglist $belist                                                                               
+                shairport-sync -t 0 -r 0 -d $arglist $belist                                                                               
         else                                                                                                                     
-                shairport-sync -d -a "$name" $arglist $belist                                                                    
+                shairport-sync -t 0 -r 0 -d -a "$name" $arglist $belist                                                                    
         fi                                                                                                                       
 }                                                                                                                                
                                                                                                                                  
